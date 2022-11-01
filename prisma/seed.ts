@@ -7,7 +7,7 @@ async function main() {
     data: {
       name: 'John Doe',
       email: 'john.doe@gmail.com',
-      avatarUrl: "https://github.com/leokazuyukinagatani",
+      avatarUrl: "https://github.com/leokazuyukinagatani.png",
     }
   })
 
@@ -32,7 +32,7 @@ async function main() {
       secondTeamCountryCode: 'BR' 
     }
   })
-
+  
   await prisma.game.create({
     data: {
       date: '2022-11-03T18:00:00.685Z',

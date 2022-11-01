@@ -25,7 +25,6 @@ model Pool {
   participants Participant[]
   owner        User?         @relation(fields: [ownerId], references: [id])
   
-  @@map("pools")
 }
 
 model Participant {
@@ -38,7 +37,6 @@ model Participant {
   pool    Pool    @relation(fields: [poolId], references: [id])
 
   @@unique([userId, poolId])
-  @@map("participants")
 }
 
 model User {
@@ -50,7 +48,6 @@ model User {
 
   participantingAt Participant[]
   ownPools         Pool[]
-  @@map("users")
 }
 
 model Game {
@@ -60,7 +57,6 @@ model Game {
   secondTeamCountryCode String
 
   guesses Guess[]
-  @@map("games")
 }
 
 model Guess {
@@ -73,5 +69,4 @@ model Guess {
 
   game        Game        @relation(fields: [gameId], references: [id])
   participant Participant @relation(fields: [participantId], references: [id])
-  @@map("guesses")
 }
