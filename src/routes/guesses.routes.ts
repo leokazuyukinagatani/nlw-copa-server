@@ -23,7 +23,6 @@ export async function guessesRoutes(fastify: FastifyInstance) {
       secondTeamPoints: z.number(),
     });
 
-    
     const { poolId, gameId } = createGuessParams.parse(request.params)
     const { firstTeamPoints, secondTeamPoints } = createGuessBody.parse(request.body)
 
@@ -75,7 +74,7 @@ export async function guessesRoutes(fastify: FastifyInstance) {
       })
     }
 
-    await prisma.guess.create({
+    const guessCreated = await prisma.guess.create({
       data: {
         gameId,
         participantId: participant.id,
@@ -83,7 +82,7 @@ export async function guessesRoutes(fastify: FastifyInstance) {
         secondTeamPoints,
       }
     })
-
+    console.log(guessCreated)
     return reply.status(201).send()
   })
 }
