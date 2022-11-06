@@ -1,12 +1,13 @@
 import Fastify from 'fastify'
+import jwt from '@fastify/jwt'
 import cors from '@fastify/cors'
-import { PrismaClient } from '@prisma/client'
-import { z } from 'zod'
-import ShortUniqueId from 'short-unique-id'
+import { authRoutes } from './routes/auth'
+import { userRoutes } from './routes/users.routes'
+import { poolRoutes } from './routes/pools.routes'
+import { guessesRoutes } from './routes/guesses.routes'
+import { gameRoutes } from './routes/games.routes'
 
-const prisma = new PrismaClient({
-  log: ['query']
-})
+
 
 async function bootstrap() {
   const fastify = Fastify({
@@ -17,60 +18,17 @@ async function bootstrap() {
     origin: true,
   })
 
-  fastify.get('/pools/count', async () => {
-    const count = await prisma.pool.count()
-
-    return { count }
+  await fastify.register(jwt, {
+    secret: 'nlwcopa'
   })
 
-  fastify.get('/users/count', async () => {
-    const count = await prisma.user.count()
+  await fastify.register(authRoutes)
+  await fastify.register(userRoutes)
+  await fastify.register(poolRoutes)
+  await fastify.register(guessRoutes)
+  await fastify.register(gameRoutes)
 
-    return { count }
-  })
-  
-  fastify.get('/guesses/count', async () => {
-    const count = await prisma.guess.count()
-
-    return { count }
-  })
-
-
-
-  fastify.post('/pools', async (request, reply) => {
-    const createPoolBody = z.object({
-      title: z.string({
-        required_error: "Title is required",
-        invalid_type_error: "Title must be a string",
-      }),
-    })
-   
-      try {
-        const { title } = createPoolBody.parse(request.body)
-
-        const generate = new ShortUniqueId({ length:6 })
-        const code = String(generate()).toUpperCase()
-        await prisma.pool.create({
-          data: {
-            title,
-            code 
-          }
-        })
-        return reply.status(201).send({code})
-      } catch (error) {
-        const errorJson = JSON.stringify(error)
-        if (error instanceof z.ZodError){
-          return reply.status(400).send(errorJson)
-        } 
-        else {
-            return reply.status(500).send(errorJson)
-        }
-      }
-  })
-
-  
-
-  await fastify.listen({ port: 3333, /*host: '0.0.0.0' */})
+  await fastify.listen({ port: 3333, host: '0.0.0.0' })
 }
 
 bootstrap()
