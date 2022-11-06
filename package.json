@@ -6,10 +6,7 @@
   "scripts": {
     "dev": "tsx src/server.ts",
     "build": "npm migrate:deploy && tsc",
-    "start": "tsx src/server.ts",
-    "migrate:dev": "npx prisma migrate dev",
-    "migrate:deploy": "npx prisma migrate deploy",
-    "migrate:status": "npx prisma migrate status",
+    "start": "node src/server.js",
     "generate": "npx prisma generate"
   },
   "keywords": [],
