@@ -25,7 +25,7 @@ async function bootstrap() {
   await fastify.register(authRoutes)
   await fastify.register(userRoutes)
   await fastify.register(poolRoutes)
-  await fastify.register(guessRoutes)
+  await fastify.register(guessesRoutes)
   await fastify.register(gameRoutes)
 
   await fastify.listen({ port: 3333, host: '0.0.0.0' })
