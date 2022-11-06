@@ -7,7 +7,7 @@ generator client {
 
 generator erd {
   provider = "prisma-erd-generator"
-  theme = "forest"
+  theme    = "forest"
 }
 
 datasource db {
@@ -24,7 +24,6 @@ model Pool {
 
   participants Participant[]
   owner        User?         @relation(fields: [ownerId], references: [id])
-  
 }
 
 model Participant {
@@ -43,6 +42,7 @@ model User {
   id        String   @id @default(cuid())
   name      String
   email     String   @unique
+  googleId   String?   @unique
   avatarUrl String?
   createdAt DateTime @default(now())
 
@@ -69,4 +69,6 @@ model Guess {
 
   game        Game        @relation(fields: [gameId], references: [id])
   participant Participant @relation(fields: [participantId], references: [id])
+
+  @@unique([participantId, gameId])
 }
