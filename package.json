@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install": "npm i",
+    "build": "npm run dev",
     "dev": "tsx watch src/server.ts"
   },
   "keywords": [],
