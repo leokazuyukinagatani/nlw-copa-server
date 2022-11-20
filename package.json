@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "deploy": "tsnd --exit-child src/api/server.ts"
+    "deploy": "tsnd --exit-child src/server.ts"
   },
   "keywords": [],
   "author": "",
