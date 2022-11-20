@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "deploy": "tsnd --exit-child src/server.ts"
+    "dev": "tsx watch src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +16,7 @@
     "@mermaid-js/mermaid-cli": "^9.1.7",
     "prisma": "^4.5.0",
     "prisma-erd-generator": "^1.2.1",
+    "ts-node-dev": "^2.0.0",
     "tsx": "^3.11.0",
     "typescript": "^4.8.4"
   },

@@ -26,7 +26,7 @@ async function bootstrap() {
   await fastify.register(guessesRoutes)
   await fastify.register(gameRoutes)
 
-  await fastify.listen({ port: 3333, host: '0.0.0.0' })
+  await fastify.listen({ port: 3333, host: 'https://nlw-copa.onrender.com' })
 }
 
 bootstrap()
