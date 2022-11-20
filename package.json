@@ -1,11 +1,11 @@
-
 {
   "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "deploy": "tsnd --exit-child src/api/server.ts"
   },
   "keywords": [],
   "author": "",

@@ -7,8 +7,6 @@ import { poolRoutes } from './routes/pools.routes'
 import { guessesRoutes } from './routes/guesses.routes'
 import { gameRoutes } from './routes/games.routes'
 
-
-
 async function bootstrap() {
   const fastify = Fastify({
     logger: true,
